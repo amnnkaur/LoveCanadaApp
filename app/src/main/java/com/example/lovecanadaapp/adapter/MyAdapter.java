@@ -1,5 +1,6 @@
 package com.example.lovecanadaapp.adapter;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.example.lovecanadaapp.R;
 import com.example.lovecanadaapp.model.CanadaAttraction;
 import com.example.lovecanadaapp.ui.AttractionListActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.placeViewHolder>  {
@@ -34,7 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.placeViewHolder>  
     }
 
     @Override
-    public void onBindViewHolder(@NonNull placeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final placeViewHolder holder, final int position) {
 
         CanadaAttraction canadaObject = this.canadaAttractionArrayList.get(position);
 
@@ -45,7 +47,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.placeViewHolder>  
             @Override
             public void onClick(View v) {
 
-                //Intent mIntent = new Intent(holder.itemView.getContext(), AttractionListActivity.class);
+                CanadaAttraction pos = canadaAttractionArrayList.get(position);
+                Bundle myBundle = new Bundle();
+                myBundle.putSerializable("placeDetail", (Serializable) pos);
+
+                Intent mIntent = new Intent(holder.itemView.getContext(), AttractionListActivity.class);
+                mIntent.putExtra("object", myBundle);
+                holder.itemView.getContext().startActivity(mIntent);
+
 
             }
         });

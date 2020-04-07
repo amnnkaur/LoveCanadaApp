@@ -10,8 +10,8 @@ public class CanadaAttraction
     private String description;
     private int placeImage;
 
-    public CanadaAttraction() {
-    }
+    /*public CanadaAttraction() {
+    }*/
 
     public CanadaAttraction(int placeID, String placeName, String address, String city, String province, String description, int placeImage) {
         this.placeID = placeID;
